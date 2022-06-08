@@ -1,9 +1,5 @@
 @extends('layouts.default')
 
-@push('styles')
-    <link rel="stylesheet" href="/css/user.css">
-@endpush
-
 @section('title', 'Página de usuário')
 
 @section('sidebar')
@@ -20,13 +16,3 @@
     {{ $user['email'] }}<br>
     {{ $user['created_at'] }}<br>
 @endsection
-
-@push('scripts')
-    <script src="{{ asset('/js/app.js') }}"></script>
-@endpush
-
-@push('scripts')
-    <script src="{{ asset('js/user.js') }}"></script>
-@endpush
-
-
