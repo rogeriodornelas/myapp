@@ -7,13 +7,22 @@ use Illuminate\Http\Request;
 
 class BusinessController extends Controller
 {
-    public function index(Request $request)
+    public function index()
     {
-        $request = $request->all(); //array com o request
-        $business = Business::find(5);
-        $business->fill($request);
-        $business->save();
-        dd($business);
+        $business = Business::where('email', 'LIKE','%example%')->get();
+        dd($business->toArray());
+
+        //deletando registros
+//        $business = Business::find(5);
+//        $business->delete();
+//        dd($business);
+
+        //update usando request (tem que ter o request no param da funcao)
+//        $request = $request->all(); //array com o request
+//        $business = Business::find(5);
+//        $business->fill($request);
+//        $business->save();
+//        dd($business);
 
 
 //        // a função update retorna true
