@@ -10,8 +10,6 @@
     <title>@yield('title', 'Valor padrão')</title>
 </head>
 <body>
-    <h1>Meu Layout</h1>
-
     @section('sidebar')
         <div>
             <nav>

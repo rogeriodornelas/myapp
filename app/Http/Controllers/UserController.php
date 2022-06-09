@@ -17,14 +17,8 @@ class UserController extends Controller
 
     public function show(User $user)
     {
-//        $user->posts()->create([
-//            'title' => 'Titulo 1',
-//            'cover' => 'Cover 1',
-//            'content' => 'Conteúdo 1',
-//            'tags' => 'Tags 1'
-//        ]);
-
-        dd($user->posts);
+        $user->teams()->sync([2,3]);
+        return $user->teams;
 
         return view('user', [
             'name' => 'Rogério',

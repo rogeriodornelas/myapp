@@ -4,13 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Models\Business;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class BusinessController extends Controller
 {
     public function index()
     {
-        $business = Business::where('email', 'LIKE','%example%')->get();
-        dd($business->toArray());
+        $businesses = Business::all();
+        return view('businesses', compact('businesses'));
+
+//        $business = Business::where('email', 'LIKE','%example%')->get();
+//        dd($business->toArray());
 
         //deletando registros
 //        $business = Business::find(5);
@@ -54,5 +58,18 @@ class BusinessController extends Controller
 //        $businessWhereFirst = Business::where('name', 'LIKE', '%Davis%')->first();
 //
 //        dd($business, $businesses, $businessWhere, $businessWhereFirst);
+    }
+
+    public function store(Request $request)
+    {
+        $input = $request->validate([
+            'name' => 'required|string',
+            'email' => 'required|email',
+            'address' => 'string'
+        ]);
+
+        $business = Business::create($input);
+
+        return Redirect::route('businesses.index');
     }
 }
