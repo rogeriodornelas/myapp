@@ -7,15 +7,36 @@ use Illuminate\Http\Request;
 
 class BusinessController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $business = Business::create([
-            'name' => 'Outro Usuário Qualquer',
-            'email' => 'qualqueremailai@gmail.com',
-            'address' => 'rua tal do bairro x'
-        ]);
-
+        $request = $request->all(); //array com o request
+        $business = Business::find(5);
+        $business->fill($request);
+        $business->save();
         dd($business);
+
+
+//        // a função update retorna true
+//        $business = Business::find(5)->update([
+//            'name'=>'Nome atualizado pela segunda vez',
+//            'email' => 'emailsegundaatt@gmail.com',
+//            'address' => 'novo endereço'
+//        ]);
+
+
+        //Essa é uma forma de atualizar os registros
+//        $business = Business::find(5);
+//        $business->name = 'Nome Atualizado';
+//        $business->email = 'Email atualizado';
+//        $business->save(); //essa função salva os registros no banco
+
+
+        // Assim é possível adicinar registros na tabela
+//        $business = Business::create([
+//            'name' => 'Outro Usuário Qualquer',
+//            'email' => 'qualqueremailai@gmail.com',
+//            'address' => 'rua tal do bairro x'
+//        ]);
 
 //        $businesses = Business::all();
 //        $business = Business::find(1);
